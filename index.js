@@ -10,6 +10,9 @@ app.use(express.urlencoded({extended : false}));
 
 const server = http.createServer(app);
 
+const userRouter = require('./routes/userRoute');
+
+app.use('/users', userRouter);
 
 mongoose.connect(config.mongo.uri);
 
