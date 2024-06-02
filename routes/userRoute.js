@@ -26,7 +26,7 @@ router.post('/signin', async (req, res) => {
         {
           user.paid=false;
         }
-        const token = jwt.sign({ email: user.email, role: user.role, id:user.id,paid: user.paid,expirePaid:user.expirePayementDate,level: user.level }, config.token.secret, { expiresIn: '1h' });
+        const token = jwt.sign({ email: user.email,username:`${user.firstName} ${user.lastName}`, role: user.role, id:user.id,paid: user.paid,expirePaid:user.expirePayementDate,level: user.level }, "Promotunisie-secret-key", { expiresIn: '1h' });
         res.json({ token });
       }
     } catch (err) {
@@ -36,7 +36,7 @@ router.post('/signin', async (req, res) => {
 
   router.post('/signup',async (req, res) => {
     try {
-        const { firstName, lastName, email, password ,address,phone, birthday} = req.body;
+        const { firstName, lastName, email, password ,address,phone} = req.body;
         if (!firstName || !lastName || !email || !password || typeof firstName !== 'string' ||  typeof lastName !== 'string' || typeof email !== 'string' || typeof password !== 'string' || typeof address !== 'string' ) {
             return res.status(400).json({ success: false, error: 'Prénom, nom, email et mot de passe requis' });
         }
@@ -56,9 +56,7 @@ router.post('/signin', async (req, res) => {
             email:email,
             password: hashedPassword,
             address: address,
-            phone: phone,
-            birthday: birthday
-           
+            phone: phone,           
         });
 
        

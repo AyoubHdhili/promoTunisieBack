@@ -28,13 +28,9 @@ const User = new mongoose.Schema({
     required: true
   },
     phone: {
-      type: Number,
+      type: String,
       required: true
     },
-  birthday: {
-    type: Date,
-    required: true,
-  },
   verificationCode: {
     type: String,
   },
