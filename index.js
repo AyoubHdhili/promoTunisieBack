@@ -22,8 +22,10 @@ const corsOptions = {
 const server = http.createServer(app);
 
 const userRouter = require('./routes/userRoute');
+const productRouter = require('./routes/productRoute');
 
 app.use('/users', userRouter);
+app.use('/products', productRouter);
 
 mongoose.connect(config.mongo.uri);
 
