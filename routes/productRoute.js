@@ -1,5 +1,6 @@
 const express = require('express');
 const Product = require('../models/product');
+const upload = require('../shared/multer');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -11,22 +12,20 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
-    try {
+router.post('/',upload.array('images', 10), async (req, res) => {
+        const imagePaths = req.files.map(file => file.filename);
         const product = new Product({
             name:req.body.name,
             price:req.body.price,
             description: req.body.description,
             category: req.body.category,
+            images:imagePaths ,
             stock: req.body.stock,
             reviews: req.body.reviews
         });
-
+        console.log(product);
         await product.save();
         res.json({"message" : "product added successfully"});
-    } catch {
-        res.json({"message" : "error in product add"});
-    }
 })
 
 router.put('/:id', async (req, res) => {

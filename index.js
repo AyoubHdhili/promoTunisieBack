@@ -21,6 +21,8 @@ const corsOptions = {
 
 const server = http.createServer(app);
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 const userRouter = require('./routes/userRoute');
 const productRouter = require('./routes/productRoute');
 
