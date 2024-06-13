@@ -28,6 +28,11 @@ router.post('/',upload.array('images', 10), async (req, res) => {
         res.json({"message" : "product added successfully"});
 })
 
+router.get('/:id', async (req, res) =>{
+    const product = await Product.findById(req.params.id);
+    res.json(product);
+})
+
 router.put('/:id', async (req, res) => {
     try {
         await Product.findByIdAndUpdate(req.params.id,{
