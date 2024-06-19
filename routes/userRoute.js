@@ -26,7 +26,7 @@ router.post('/signin', async (req, res) => {
         {
           user.paid=false;
         }
-        const token = jwt.sign({ email: user.email,username:`${user.firstName} ${user.lastName}`, role: user.role, id:user.id,paid: user.paid,expirePaid:user.expirePayementDate,level: user.level }, "Promotunisie-secret-key", { expiresIn: '1h' });
+        const token = jwt.sign({ email: user.email,username:`${user.firstName} ${user.lastName}`, role: user.role, id:user.id,expirePaid:user.expirePayementDate,level: user.level, address:user.address, phone:user.phone }, "Promotunisie-secret-key", { expiresIn: '1h' });
         res.json({ token });
       }
     } catch (err) {

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { number } = require('yup');
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -26,6 +27,10 @@ const productSchema = new mongoose.Schema({
         default: 0,
     },
     images: [String],
+    discount:{
+        type: Number,
+        default: 0
+    },
     reviews: [
         {
             user: {
