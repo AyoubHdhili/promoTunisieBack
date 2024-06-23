@@ -22,6 +22,7 @@ router.post('/',upload.array('images', 10), async (req, res) => {
             price:req.body.price,
             description: req.body.description,
             category: req.body.category,
+            marque: req.body.marque,
             images:imagePaths ,
             stock: req.body.stock,
             reviews: req.body.reviews
